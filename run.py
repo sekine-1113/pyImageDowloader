@@ -1,11 +1,11 @@
-from imgdler import ImageDownloader, FilenameGenerator, MD5HashedFilenameGenerator
+from imgdler import ImageDownloader, PathGenerator, MD5HashedPathGenerator
 
 
 if __name__ == "__main__":
     target_url = "https://sample-img.lb-product.com/wp-content/themes/hitchcock/images/1KB.png"
 
-    downloader = ImageDownloader(filename_generator=FilenameGenerator())
-    hashed_downloader = ImageDownloader(filename_generator=MD5HashedFilenameGenerator())
+    downloader = ImageDownloader(filename_generator=PathGenerator())
+    hashed_downloader = ImageDownloader(filename_generator=MD5HashedPathGenerator())
 
     image1 = downloader.download(target_url)
     print(image1.path) # -> .\images\1KB.png

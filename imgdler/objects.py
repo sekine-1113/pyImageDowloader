@@ -1,5 +1,6 @@
 from pathlib import Path
 
+
 class ImageObject:
     def __init__(self, path: Path) -> None:
         self.path = path

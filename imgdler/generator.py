@@ -5,18 +5,18 @@ from pathlib import Path
 import requests
 
 
-class BaseFilenameGenerator(ABC):
+class BasePathGenerator(ABC):
     @abstractmethod
     def generate(self, response: requests.Response) -> Path:
         ...
 
 
-class FilenameGenerator(BaseFilenameGenerator):
+class PathGenerator(BasePathGenerator):
     def generate(self, response: requests.Response) -> Path:
         return Path(response.url.split("/")[-1])
 
 
-class MD5HashedFilenameGenerator(BaseFilenameGenerator):
+class MD5HashedPathGenerator(BasePathGenerator):
     def generate(self, response: requests.Response) -> Path:
         filename = hashlib.md5(response.content).hexdigest()
         ext = response.url.split("/")[-1].split(".")[-1]

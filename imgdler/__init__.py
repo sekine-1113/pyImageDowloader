@@ -3,7 +3,7 @@ from pathlib import Path
 
 import requests
 
-from imgdler.generator import BaseFilenameGenerator, FilenameGenerator, MD5HashedFilenameGenerator
+from imgdler.generator import BasePathGenerator, PathGenerator, MD5HashedPathGenerator
 from imgdler.objects import ImageObject
 
 
@@ -14,7 +14,7 @@ class Downloadable(ABC):
 
 
 class ImageDownloader(Downloadable):
-    def __init__(self, save_dir: str | Path = None, mkdir=True, parents=True, exist_ok=True, filename_generator: BaseFilenameGenerator=MD5HashedFilenameGenerator()) -> None:
+    def __init__(self, save_dir: str | Path = None, mkdir=True, parents=True, exist_ok=True, filename_generator: BasePathGenerator=MD5HashedPathGenerator()) -> None:
         if save_dir is None:
             tmp = __file__.split("\\")
             tmp.pop()
@@ -53,5 +53,5 @@ class ImageDownloader(Downloadable):
         self._generated_filepath = self._generate_filename(response)
         return self._write(self._generated_filepath, response.content, overwrite)
 
-    def new_client(self, filename_generator: BaseFilenameGenerator):
+    def new_client(self, filename_generator: BasePathGenerator):
         return ImageDownloader(self._save_dir, filename_generator = filename_generator)
