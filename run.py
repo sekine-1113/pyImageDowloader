@@ -1,4 +1,5 @@
-from imgdler import ImageDownloader, PathGenerator, MD5HashedPathGenerator
+from imgdler.imdgler import ImageDownloader
+from imgdler.generator import PathGenerator, MD5HashedPathGenerator
 
 
 if __name__ == "__main__":
