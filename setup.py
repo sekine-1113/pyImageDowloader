@@ -3,7 +3,7 @@ import setuptools
 
 setuptools.setup(
     name="imgdler",
-    version="1.0.0",
+    version="1.1.0",
     description="画像ダウンロード用のライブラリ",
     author="sekine",
     license="",
