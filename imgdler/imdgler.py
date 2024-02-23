@@ -53,5 +53,7 @@ class ImageDownloader(Downloadable):
         self._generated_filepath = self._generate_filename(response)
         return self._write(self._generated_filepath, response.content, overwrite)
 
-    def new_client(self, filename_generator: BasePathGenerator):
+    def new_client(self, filename_generator: BasePathGenerator = None):
+        if (filename_generator is None):
+            filename_generator = self._generator
         return ImageDownloader(self._save_dir, filename_generator = filename_generator)
