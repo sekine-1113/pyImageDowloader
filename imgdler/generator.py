@@ -1,23 +1,16 @@
-import hashlib
-from abc import ABC, abstractmethod
-from pathlib import Path
+from .generators import BasePathGenerator, PathGenerator, MD5HashedPathGenerator
 
-import requests
+def __warning():
+    from rich.console import Console
+    from rich.text import Text
+    __generator_duplicated_warn = """Warning: `generator.py` will be deprecated in v3.0.0~.
+         If you are using `generator.py`, please change it to `generators.py`.
+         There are no changes to the following classes: {}, {}, {}
+""".format(
+        BasePathGenerator.__name__,
+        PathGenerator.__name__,
+        MD5HashedPathGenerator.__name__,
+    )
+    Console().print(Text(__generator_duplicated_warn, "#f0f033"))
 
-
-class BasePathGenerator(ABC):
-    @abstractmethod
-    def generate(self, response: requests.Response) -> Path:
-        ...
-
-
-class PathGenerator(BasePathGenerator):
-    def generate(self, response: requests.Response) -> Path:
-        return Path(response.url.split("/")[-1])
-
-
-class MD5HashedPathGenerator(BasePathGenerator):
-    def generate(self, response: requests.Response) -> Path:
-        filename = hashlib.md5(response.content).hexdigest()
-        ext = response.url.split("/")[-1].split(".")[-1]
-        return Path(f"{filename}.{ext}")
+__warning()
