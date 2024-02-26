@@ -3,7 +3,7 @@ from pathlib import Path
 
 import requests
 
-from imgdler.generator import BasePathGenerator, MD5HashedPathGenerator
+from imgdler.generators import BasePathGenerator, MD5HashedPathGenerator
 from imgdler.objects import ImageObject
 
 
