@@ -17,10 +17,8 @@ class Downloadable(ABC):
 class ImageDownloader(Downloadable):
     def __init__(self, save_dir: str | Path = None, mkdir=True, parents=True, exist_ok=True, filename_generator: BasePathGenerator=MD5HashedPathGenerator()) -> None:
         if save_dir is None:
-            tmp = sys.argv[0].split("\\")
-            tmp.pop()
-            tmp.append("images")
-            save_dir = "\\".join(tmp)
+            tmp = Path(sys.argv[0]).parent
+            save_dir = tmp / "images"
         self._save_dir = save_dir if isinstance(save_dir, Path) else Path(save_dir)
         if mkdir:
             self._save_dir.mkdir(parents=parents, exist_ok=exist_ok)
