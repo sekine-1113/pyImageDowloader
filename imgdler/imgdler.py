@@ -1,3 +1,4 @@
+import sys
 from abc import ABC, abstractmethod
 from pathlib import Path
 
@@ -16,7 +17,7 @@ class Downloadable(ABC):
 class ImageDownloader(Downloadable):
     def __init__(self, save_dir: str | Path = None, mkdir=True, parents=True, exist_ok=True, filename_generator: BasePathGenerator=MD5HashedPathGenerator()) -> None:
         if save_dir is None:
-            tmp = __file__.split("\\")
+            tmp = sys.argv[0].split("\\")
             tmp.pop()
             tmp.append("images")
             save_dir = "\\".join(tmp)
