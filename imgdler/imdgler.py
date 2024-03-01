@@ -2,7 +2,8 @@ from imgdler.imgdler import Downloadable, ImageDownloader
 
 
 def __error():
-    from .errors import warning
+    from imgdler.errors import warning
+    from imgdler.logger import logger
 
     warning(""""Warning: `imdgler.py` will be deprecated in v3.0.0~.
          If you are using `imdgler.py`, please change it to `imgdler.py`.
@@ -11,5 +12,7 @@ def __error():
         Downloadable.__name__,
         ImageDownloader.__name__,
     ))
+
+    logger.warning("`imdgler.py` will be deprecated in version 3. Please change it to `imgdler.py`")
 
 __error()
