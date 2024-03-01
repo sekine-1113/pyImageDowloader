@@ -1,7 +1,10 @@
-from .generators import BasePathGenerator, PathGenerator, MD5HashedPathGenerator
+from imgdler.generators import BasePathGenerator, PathGenerator, MD5HashedPathGenerator
+
 
 def __error():
-    from .errors import warning
+    from imgdler.errors import warning
+    from imgdler.logger import logger
+
 
     warning("""Warning: `generator.py` will be deprecated in v3.0.0~.
          If you are using `generator.py`, please change it to `generators.py`.
@@ -12,5 +15,7 @@ def __error():
         MD5HashedPathGenerator.__name__
         )
     )
+
+    logger.warning("`generator.py` will be deprecated in version 3. Please change it to `generators.py`")
 
 __error()
