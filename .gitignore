@@ -6,3 +6,6 @@ dist/
 *.egg-info/
 
 images/
+log/
+*log/
+*.log
