@@ -3,10 +3,10 @@ import setuptools
 
 setuptools.setup(
     name="imgdler",
-    version="1.1.0",
+    version="2.0.0",
     description="画像ダウンロード用のライブラリ",
     author="sekine",
-    license="",
+    license="MIT",
     packages=setuptools.find_packages(),
     install_requires=["requests"],
 )
