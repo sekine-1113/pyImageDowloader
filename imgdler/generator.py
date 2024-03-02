@@ -1,23 +1,21 @@
-import hashlib
-from abc import ABC, abstractmethod
-from pathlib import Path
-
-import requests
+from imgdler.generators import BasePathGenerator, PathGenerator, MD5HashedPathGenerator
 
 
-class BasePathGenerator(ABC):
-    @abstractmethod
-    def generate(self, response: requests.Response) -> Path:
-        ...
+def __error():
+    from imgdler.errors import warning
+    from imgdler.logger import logger
 
 
-class PathGenerator(BasePathGenerator):
-    def generate(self, response: requests.Response) -> Path:
-        return Path(response.url.split("/")[-1])
+    warning("""Warning: `generator.py` will be deprecated in v3.0.0~.
+         If you are using `generator.py`, please change it to `generators.py`.
+         There are no changes to the following classes: {}, {}, {}
+    """.format(
+        BasePathGenerator.__name__,
+        PathGenerator.__name__,
+        MD5HashedPathGenerator.__name__
+        )
+    )
 
+    logger.warning("`generator.py` will be deprecated in version 3. Please change it to `generators.py`")
 
-class MD5HashedPathGenerator(BasePathGenerator):
-    def generate(self, response: requests.Response) -> Path:
-        filename = hashlib.md5(response.content).hexdigest()
-        ext = response.url.split("/")[-1].split(".")[-1]
-        return Path(f"{filename}.{ext}")
+__error()
