@@ -8,5 +8,5 @@ setuptools.setup(
     author="sekine",
     license="MIT",
     packages=setuptools.find_packages(),
-    install_requires=["requests"],
+    install_requires=["requests", "rich"],
 )
