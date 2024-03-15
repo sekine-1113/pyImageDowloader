@@ -3,13 +3,10 @@ from rich.logging import RichHandler
 
 
 def imgdler_logger():
-    from datetime import datetime
+    from datetime import date
     from pathlib import Path
 
-    now = datetime.now()
-    today = now.date()
-    log_filename = f"{today.year}{today.month if today.month > 9 else '0' + str(today.month)}{today.day if today.day > 9 else '0' + str(today.day)}.log"
-
+    log_filename = f"{str(date.today()).replace('-', '')}.log"
     log_dir = Path(__file__).parent.parent / "log"
     log_dir.mkdir(exist_ok=True)
 
